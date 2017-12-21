@@ -1,9 +1,9 @@
 from itertools import permutations, chain, product
 """
 This solution will first parse the alphametic expression
-grouping and counting letters buy digit ranks
+grouping and counting letters by digit ranks
 then trace recursively all possible permutations starting from
-the lowest rank and genrating additional permutations for new digits
+the lowest rank and generating additional permutations for new digits
 at higer ranks as necessary.
 This will allow to avoid unnesessarily large permutations to scan.
 Also leading letters in words will be treated as non-zero digits only
@@ -13,7 +13,7 @@ to reduce the number of permutations
 
 def digPerms(digset, nzcharset, okzcharset):
     """This function creates permutations given the set of digits,
-       letters not alllowed to be 0, and letters allowed to be 0
+       letters not allowed to be 0, and letters allowed to be 0
     """
     nzcnt = len(nzcharset)  # How many letters are non-0
     okzcnt = len(okzcharset)  # How many letters are allowed 0
@@ -39,8 +39,8 @@ def digPerms(digset, nzcharset, okzcharset):
         # Generate a list of possible 0 positions
         poslst = list(range(nzcnt, totcnt))
         # Chain two iterators
-        # first iterator with all non-0 permutations
-        # second iterator with all permulations without 1 letter
+        # first iterator with all non-0 permutations one letter short
+        # second iterator with all possible 0 positions
         # insert 0 in all possible positions of that permutation
         return chain(permutations(nzdigset, totcnt),
                      map(lambda x: x[0][:x[1]] + (0,) + x[0][x[1]:],
